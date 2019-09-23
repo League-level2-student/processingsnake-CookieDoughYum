@@ -1,21 +1,28 @@
-
+import java.util.Random;
 // 1. Follow the recipe instructions inside the Segment class.
 
 // This class will be used to represent each part of the moving snake.
 
 class Segment {
-
   //2. Create x and y member variables to hold the location of each segment.
-
+int x;
+int y;
+Segment head;
+int foodX;
+int foodY;
   // 3. Add a constructor with parameters to initialize each variable.
-
+Segment(int x, int y){
+  this.x=x;
+  this.y=y;
+}
 
   // 4. Add getter and setter methods for both the x and y member variables.
-}
+  
+  
+
 
 
 // 5. Create (but do not initialize) a Segment variable to hold the head of the Snake
-
 
 
 // 6. Create and initialize a String to hold the direction of your snake e.g. "up"
@@ -36,12 +43,11 @@ class Segment {
 
 
 void setup() {
-
   // 9. Set the size of your sketch (500 by 500).
-
   size(500, 500);
-
-
+Segment head=new Segment;
+frameRate(20);
+dropFood();
   // 10. initialize your head to a new segment.
 
 
@@ -52,7 +58,8 @@ void setup() {
 void draw() {
 
   background(0);
-
+drawFood();
+drawSnake();
 
   //12. Call the manageTail, drawFood, drawSnake, move, and collision methods.
 }
@@ -60,7 +67,13 @@ void draw() {
 
 // 13. Complete the drawFood method below. (Hint: each piece of food should be a 10 by 10 rectangle).
 
-void drawFood() {
+void dropFood() {
+  foodX = ((int)random(50)*10);
+  foodY = ((int)random(50)*10);
+}
+
+void drawFood(){
+  rect food(foodX, foodY);
 }
 
 
@@ -163,4 +176,5 @@ void checkTailCollision() {
   // reset your food variable
 
   //Call this method at the begining of your manageTail method.
+}
 }
