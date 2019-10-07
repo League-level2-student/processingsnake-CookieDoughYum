@@ -14,8 +14,9 @@ int y;
 Segment(int x, int y){
   this.x=x;
   this.y=y;
- foodX = ((int)random(50)*10);
-foodY = ((int)random(50)*10);
+ //foodX = ((int)random(50)*10);
+//foodY = ((int)random(50)*10);
+//head=new Segment(5,5);
 }
 
   // 4. Add getter and setter methods for both the x and y member variables.
@@ -40,7 +41,7 @@ foodY = ((int)random(50)*10);
 Segment head;
 
 // 6. Create and initialize a String to hold the direction of your snake e.g. "up"
-String direction="up";
+String direction="down";
 
 
 // 7. Create and initialize a variable to hold how many pieces of food the snake has eaten.
@@ -49,8 +50,8 @@ int foodAmount=1;
 
 
 // 8. Create and initialize foodX and foodY variables to hold the location of the food.
-int foodX;
-int foodY;
+int foodX=((int)random(50)*10);
+int foodY=((int)random(50)*10);
 // (Hint: use the random method to set both the x and y to random locations within the screen size (500 by 500).)
 
 
@@ -61,8 +62,7 @@ void setup() {
   size(500, 500);
 //dropFood();
   // 10. initialize your head to a new segment.
- head=new Segment(5,5);
-
+  head=new Segment(0,0);
   // 11. Use the frameRate(int rate) method to set the rate to 20.
   frameRate(20);
 }
@@ -70,7 +70,7 @@ void setup() {
 
 void draw() {
 
-  //background(0);
+background(#E5E3E3);
 //drawFood();
 //drawSnake();
 
@@ -214,8 +214,8 @@ checkTailCollision();
   // Add a new Segment to your ArrayList that has the same X and Y as the head of your snake.
 tail.add(new Segment(head.x, head.y));
   // While the tail size is greater than your food, remove the first Segment in your tail.
-  while(tail.size()>foodX && tail.size()>foodY){
-    tail.remove(tail.indexOf(1));
+  while(tail.size()>foodAmount){
+    tail.remove(0);
   }
 }
 
@@ -230,9 +230,12 @@ void drawTail() {
 // 3. Complete the missing parts of the bodyCollision method below.
 
 void checkTailCollision() {
-
+for(int i=0; i<tail.size(); i++){
   // If your head has the same location as one of your segments...
-
+if(head.x==tail.get(i).x && head.x==tail.get(i).y){
+  foodAmount=0;
+}
+}
   // reset your food variable
 
   //Call this method at the begining of your manageTail method.
