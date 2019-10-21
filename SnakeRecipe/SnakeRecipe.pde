@@ -46,7 +46,7 @@ String direction="down";
 
 // 7. Create and initialize a variable to hold how many pieces of food the snake has eaten.
 // give it a value of 1 to start.
-int foodAmount=1;
+int foodAmount=2;
 
 
 // 8. Create and initialize foodX and foodY variables to hold the location of the food.
@@ -69,7 +69,6 @@ void setup() {
 
 
 void draw() {
-
 background(#E5E3E3);
 //drawFood();
 //drawSnake();
@@ -215,14 +214,15 @@ checkTailCollision();
 tail.add(new Segment(head.x, head.y));
   // While the tail size is greater than your food, remove the first Segment in your tail.
   while(tail.size()>foodAmount){
-    tail.remove(0);
+   tail.remove(0);
   }
 }
 
 void drawTail() {
     // Draw a 10 by 10 rectangle for each Segment in your snake ArrayList.
     for(int i=0; i<tail.size(); i++){
-      rect(head.x, head.y, 10, 10);
+      Segment current = tail.get(i);
+      rect(current.x, current.y, 10, 10);
     }
 }
 
@@ -230,9 +230,9 @@ void drawTail() {
 // 3. Complete the missing parts of the bodyCollision method below.
 
 void checkTailCollision() {
-for(int i=0; i<tail.size(); i++){
+for(int i1=0; i1<tail.size(); i1++){
   // If your head has the same location as one of your segments...
-if(head.x==tail.get(i).x && head.x==tail.get(i).y){
+if(head.x==tail.get(i1).x && head.x==tail.get(i1).y){
   foodAmount=0;
 }
 }
